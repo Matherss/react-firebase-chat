@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <Container>
-      <Grid container style={{ height: window.innerHeight - 100 }} marginTop="10%" justifyContent={"center"}>
+      <Grid container style={{ height: window.innerHeight - 120 }} marginTop="10%" justifyContent={"center"}>
         <Grid>
           <Box p={2}>
             <Button onClick={login} variant="contained" size="large">

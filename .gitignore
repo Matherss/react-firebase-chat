@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# private data
+src/fb_config.js
+
+
 # testing
 /coverage
 

@@ -11,8 +11,10 @@ const Chat = () => {
   const [user] = useAuthState(auth);
   const [value, setValue] = useState("");
   const [messages, loading] = useCollectionData(firestore.collection("messages").orderBy("createdAt"));
+  const scrollRef = useRef(null);
   const sendMessage = async (e) => {
     e.preventDefault();
+    if (value == "") return alert("Нельзя отправлять пустое сообщение");
     firestore.collection("messages").add({
       uid: user.uid,
       displayName: user.displayName,
@@ -20,22 +22,30 @@ const Chat = () => {
       text: value,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
+
     setValue("");
   };
-  const scrollRef = useRef(null);
   useEffect(() => {
-    if (messages?.length > 5) {
-      scrollRef.current.scrollIntoView();
+    if (messages?.length > 3) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  });
+  }, [messages]);
+
   if (loading) return <Loader />;
   return (
     <Container>
-      <Grid container style={{ height: window.innerHeight - 100 }} marginTop="10px" justifyContent={"center"}>
-        <div style={{ width: "80%", height: "70%", border: "1px solid gray", overflowY: "auto" }}>
+      <Grid container style={{ height: window.innerHeight - 120 }} marginTop="10px" justifyContent={"center"}>
+        <div
+          style={{
+            width: "80%",
+            height: "70%",
+            border: "1px solid rgba(104,104,104,0.2)",
+            borderRadius: 5,
+            overflowY: "auto"
+          }}
+        >
           {messages.map((message, idx) => (
             <div
-              ref={scrollRef}
               key={idx}
               style={{
                 margin: 10,
@@ -48,14 +58,15 @@ const Chat = () => {
             >
               <Grid container alignItems={"center"}>
                 <Avatar src={message.photoURL} style={{ marginRight: 5 }}></Avatar>
-                <div>{message.displayName}</div>
+                <div>{message.displayName === "sync RU" ? "Admin" : message.displayName}</div>
               </Grid>
               <div>{message.text}</div>
+              <div ref={scrollRef}></div>
             </div>
           ))}
         </div>
         <Grid container flexDirection={"column"} alignItems="flex-end" style={{ width: "80%" }}>
-          <form onSubmit={sendMessage}>
+          <form style={{ width: "100%" }} onSubmit={sendMessage}>
             <TextField
               variant="outlined"
               fullWidth

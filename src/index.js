@@ -6,17 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import { fb_config } from "./fb_config.js";
 
 // Initialize Firebase
-firebase.initializeApp({
-  apiKey: "AIzaSyAacI6T0bUGqozBzM2CtU_aygMmUd3Zcu8",
-  authDomain: "my-chat-620f5.firebaseapp.com",
-  projectId: "my-chat-620f5",
-  storageBucket: "my-chat-620f5.appspot.com",
-  messagingSenderId: "1026514181337",
-  appId: "1:1026514181337:web:33d3b118f342fe2d8bb2c8",
-  measurementId: "G-EXS31FH69C"
-});
+firebase.initializeApp(fb_config);
 export const Context = createContext(null);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
