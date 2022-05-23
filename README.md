@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Link to production deploy:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+http://s97731eh.beget.tech/
+
+## Stack
+
+- mui/material": "^5.5.2"
+- firebase": "8.2.2"
+- react": "17.0.1"
+- react-firebase-hooks": "2.2.0"
+- react-router-dom": "5.2.0"
 
 ## Available Scripts
 
