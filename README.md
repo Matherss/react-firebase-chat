@@ -4,7 +4,7 @@ http://s97731eh.beget.tech/
 
 ## Stack
 
-- mui/material": "^5.5.2"
+- mui/material": "5.5.2"
 - firebase": "8.2.2"
 - react": "17.0.1"
 - react-firebase-hooks": "2.2.0"
